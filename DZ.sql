@@ -95,6 +95,18 @@ EXEC Tablice ;
 --6. Napišite proceduru koja prima tri boje i za svaku boju vraća proizvode u njoj. Pozovite proceduru i nakon toga je uklonite.
 
 
+CREATE PROC boje
+@Boja1 nvarchar(25), 
+@Boja2 nvarchar(25), 
+@Boja3 nvarchar(25) 
+AS
+BEGIN
+SELECT Boja, Naziv FROM Proizvod 
+WHERE Boja IN (@Boja1,@Boja2,@Boja3)
+GROUP BY Boja, Naziv
+END;
+
+EXEC boje 'Crna' ,'Srebrna','Crvena'
 
 
 --8. Napišite proceduru koja prima kriterij po kojemu ćete filtrirati prezimena iz tablice Kupac. Neka procedura pomoću izlaznog parametra vrati broj zapisa koji zadovoljavaju zadani kriterij. Neka procedura vrati i sve zapise koji zadovoljavaju kriterij. Pozovite proceduru i ispišite vraćenu vrijednost. Uklonite proceduru.
